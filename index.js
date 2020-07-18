@@ -3,12 +3,12 @@ const app = express();
 const { graphqlHTTP } = require('express-graphql');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const uri = require('./config');
+const {mongodbUri} = require('./config');
 
 const port = process.env.PORT || 3000;
 const schema = require('./schema');
 
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(mongodbUri, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=> console.log('Database connected'))
 .catch(error => console.log(`Error connecting to server: ${error.message}`))
 

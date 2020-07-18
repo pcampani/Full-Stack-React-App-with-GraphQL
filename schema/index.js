@@ -9,6 +9,7 @@ const GameType = new GraphQLObjectType({
     title: {type: GraphQLString},
     rating: {type: GraphQLInt},
     genre: {type: GraphQLString},
+    publisher: {type: GraphQLString},
     publisherID: {
       type: GraphQLID,
       async resolve(parent, args) {
@@ -17,17 +18,6 @@ const GameType = new GraphQLObjectType({
           return pub[0]._id;
         } catch(error) {
           console.log('error fetching publisher id')
-        }
-      }
-    },
-    publisher: {
-      type: GraphQLString,
-      async resolve(parent, {id}) {
-        try {
-          const pub = await Publisher.find({name: parent.publisher});
-          return pub[0].name;
-        } catch(error) {
-          
         }
       }
     }
