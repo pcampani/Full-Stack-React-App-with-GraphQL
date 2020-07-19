@@ -2,10 +2,16 @@
 
 ## Tech Stack
 * React
-* Material UI
+* React Hooks
+* Apollo Client 3.0
 * GraphQL
+* Formik
+* Material UI
+* Express
+* MongoDB
+* NodeJS
+* Yup
 * Webpack
-* Apollo
 
 ## How to use
 * Clone repo

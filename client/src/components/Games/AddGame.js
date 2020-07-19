@@ -27,7 +27,7 @@ export default function AddGame() {
     publisher: Yup.string().required('Please indicate game publisher')
   })
   
-  const handleSubmit = function (values) {
+  const handleSubmit = function (values, {resetForm}) {
     const {title, rating, genre, publisher} = values
     addGame({variables: {
       title,
@@ -36,7 +36,9 @@ export default function AddGame() {
       publisher
     }
   }
-  )}
+  )
+  resetForm({values: ""})
+}
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
