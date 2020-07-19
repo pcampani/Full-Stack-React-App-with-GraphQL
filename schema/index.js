@@ -36,7 +36,7 @@ const PublisherType = new GraphQLObjectType({
           const games = await Game.find({publisherID: parent._id});
           return games;
         } catch(error) {
-          
+          console.log('Error fetching games: ', error)
         }
       }
     }

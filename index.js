@@ -13,6 +13,7 @@ mongoose.connect(mongodbUri, {useNewUrlParser: true, useUnifiedTopology: true})
 .catch(error => console.log(`Error connecting to server: ${error.message}`))
 
 app.use(cors());
+
 app.use('/data', graphqlHTTP({
   schema,
   graphiql: true
