@@ -12,6 +12,18 @@ export const FETCH_GAMES = gql`
 	}
 `;
 
+export const FETCH_GAME = gql`
+	query FetchGame($id: ID!) {
+		game(id: $id) {
+			id
+			title
+			genre
+      rating
+      publisher
+		}
+	}
+`;
+
 export const ADD_GAME = gql`
 	mutation AddGame($title: String!, $rating: Int!, $genre: String!, $publisher: String!) {
 		addGame(title: $title, rating: $rating, genre: $genre, publisher: $publisher) {

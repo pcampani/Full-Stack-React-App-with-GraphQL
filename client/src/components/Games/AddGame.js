@@ -2,20 +2,35 @@ import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/client';
-import * as Yup from 'yup';
 
+import * as Yup from 'yup';
 import  * as query from '../queries'
 
-export default function AddGame() {
+const useStyles = makeStyles((theme) => ({
+  form: {
+    display: "grid"
+  },
+  formField: {
+    width: "250px",
+    display: "inline-block"
+  },
+  button: {
+    width: "250px",
+    padding: "none"
+  }
+}));
 
+export default function AddGame() {
+  const classes = useStyles();
   const [addGame] = useMutation(query.ADD_GAME, {
     refetchQueries:[{query:query.FETCH_GAMES}]
   });
 
   const initialValues = {
     title: "",
-    rating: 0,
+    rating: "",
     genre: "",
     publisher: "",
   }
@@ -42,16 +57,16 @@ export default function AddGame() {
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      <Form>
-        <Field name="title" as={TextField} label='Title' />
+      <Form className={classes.form}>
+        <Field name="title" as={TextField} label='Title' className={classes.formField} />
         <ErrorMessage name="title"/>
-        <Field name="genre" as={TextField} label='Genre' />
+        <Field name="genre" as={TextField} label='Genre' className={classes.formField}/>
         <ErrorMessage name="genre"/>
-        <Field name="rating" as={TextField} type="number" label='Rating' />
+        <Field name="rating" as={TextField} type="number" label='Rating' className={classes.formField} />
         <ErrorMessage name="rating"/>
-        <Field name="publisher" as={TextField} label='publisher' />
+        <Field name="publisher" as={TextField} label='publisher' className={classes.formField} />
         <ErrorMessage name="publisher"/>
-        <Button variant="contained" color="primary" type="submit">Submit</Button>
+        <Button variant="contained" color="primary" type="submit" className={classes.button}>Submit</Button>
       </Form>
     </Formik>
   )

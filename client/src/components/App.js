@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import  * as query from './queries'
 import theme from './ui/theme';
 import Games from './Games';
+import GameDetail from '../Details/GameDetail';
 
 export default function App() {
 
@@ -15,7 +16,8 @@ export default function App() {
   return(
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route path='/' render={(props)=> <Games {...props} data={data}/>} />
+        <Route exact path='/' render={(props)=> <Games {...props} data={data}/>} />
+        <Route path='/games/:id' component={GameDetail} />
       </Switch>
     </ThemeProvider>
   )

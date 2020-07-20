@@ -1,5 +1,5 @@
 import React from 'react';
-import GameDetail from './GameDetail';
+import GamesList from './GamesList';
 import AddGame from './AddGame';
 
 export default function GameList(props) {
@@ -8,9 +8,8 @@ export default function GameList(props) {
   
   return (
     <div>
-      {console.log(games)}
       <AddGame />
-      {games.map(game => <GameDetail key={game.id} {...game}/>)}
+      {games.map(game => <GamesList key={game.id} title={game.title} id={game.id}/>)}
     </div>
   )
 }
