@@ -1,14 +1,16 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper';
 import { useQuery } from '@apollo/client';
-import * as query from '../components/queries';
 import {Link} from 'react-router-dom';
+import Spinner from '../ui/spinner';
+
+import * as query from '../queries';
 
 export default function GameDetail(props) {
 
   const {data, loading, error} = useQuery(query.FETCH_GAME, {variables: {id:props.match.params.id}});
 
-  if(loading) return <h1>Loading....</h1>
+  if(loading) return <Spinner />
   if(error) return <h1>Error fetching data...</h1>
 
   return (

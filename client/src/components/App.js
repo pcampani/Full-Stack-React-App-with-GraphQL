@@ -6,19 +6,24 @@ import { Switch, Route } from 'react-router-dom';
 import  * as query from './queries'
 import theme from './ui/theme';
 import Games from './Games';
-import GameDetail from '../Details/GameDetail';
+import GameDetail from './Details/GameDetail';
+import Navbar from './Navigation';
+import Spinner from './ui/spinner';
 
 export default function App() {
 
   const {data, loading, error} = useQuery(query.FETCH_GAMES);
-  if(loading) return <h1>Loading....</h1>
+  if(loading) return <Spinner />
   
   return(
     <ThemeProvider theme={theme}>
-      <Switch>
-        <Route exact path='/' render={(props)=> <Games {...props} data={data}/>} />
-        <Route path='/games/:id' component={GameDetail} />
-      </Switch>
+      <>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' render={(props)=> <Games {...props} data={data}/>} />
+          <Route path='/games/:id' component={GameDetail} />
+        </Switch>
+      </>
     </ThemeProvider>
   )
 }

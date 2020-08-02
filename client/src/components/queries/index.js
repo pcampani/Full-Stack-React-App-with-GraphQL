@@ -5,9 +5,6 @@ export const FETCH_GAMES = gql`
 		games{
 			id
 			title
-			genre
-      rating
-      publisher
 		}
 	}
 `;
@@ -27,11 +24,19 @@ export const FETCH_GAME = gql`
 export const ADD_GAME = gql`
 	mutation AddGame($title: String!, $rating: Int!, $genre: String!, $publisher: String!) {
 		addGame(title: $title, rating: $rating, genre: $genre, publisher: $publisher) {
-        title
-        rating
-        genre
-        publisher
-      }
+			title
+			rating
+			genre
+			publisher
+    }
 	}
+`;
 
+export const REMOVE_GAME = gql`
+	mutation RemoveGame($id: ID!) {
+		removeGame(id: $id) {
+			id
+			title
+		}
+	}
 `;

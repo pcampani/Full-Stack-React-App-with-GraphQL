@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client';
 
 import * as Yup from 'yup';
 import  * as query from '../queries'
+import Error from '../ui/error'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -39,7 +40,7 @@ export default function AddGame() {
     title: Yup.string().required('Please enter game title'),
     rating: Yup.number(). required('Rating cant be 0'),
     genre: Yup.string().required('Please choose game genre'),
-    publisher: Yup.string().required('Please indicate game publisher')
+    publisher: Yup.string().required('Publisher is required')
   })
   
   const handleSubmit = function (values, {resetForm}) {
@@ -58,15 +59,15 @@ export default function AddGame() {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <Form className={classes.form}>
-        <Field name="title" as={TextField} label='Title' className={classes.formField} />
-        <ErrorMessage name="title"/>
+        <Field name="title" as={TextField} label='Title' className={classes.formField} color="secondary"/>
+        <ErrorMessage name="title" component={Error}/>
         <Field name="genre" as={TextField} label='Genre' className={classes.formField}/>
-        <ErrorMessage name="genre"/>
+        <ErrorMessage name="genre" component={Error}/>
         <Field name="rating" as={TextField} type="number" label='Rating' className={classes.formField} />
-        <ErrorMessage name="rating"/>
+        <ErrorMessage name="rating" component={Error}/>
         <Field name="publisher" as={TextField} label='publisher' className={classes.formField} />
-        <ErrorMessage name="publisher"/>
-        <Button variant="contained" color="primary" type="submit" className={classes.button}>Submit</Button>
+        <ErrorMessage name="publisher" component={Error}/>
+        <Button variant="contained" color="secondary" type="submit" className={classes.button}>Submit</Button>
       </Form>
     </Formik>
   )

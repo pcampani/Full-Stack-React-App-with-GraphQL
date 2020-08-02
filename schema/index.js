@@ -66,7 +66,7 @@ const RootQuery = new GraphQLObjectType({
           const pub = await Publisher.findById(id);
           return pub;
         } catch(error) {
-          
+           console.log(`Error fetching publisher`)
         }
       }
     },
@@ -83,8 +83,8 @@ const RootQuery = new GraphQLObjectType({
     },
     publishers: {
       type: new GraphQLList(PublisherType),
-      resolve(parent, args) {
-
+      async resolve(parent, args) {
+        const publishers = await Publisher.find({})
       }
     }
   }
@@ -128,8 +128,6 @@ const mutation = new GraphQLObjectType({
         } catch (error) {
           console.log(error)
         }
-        
-          
       }
     },
     addPublisher: {
