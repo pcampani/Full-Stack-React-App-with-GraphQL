@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const FETCH_GAMES = gql`
 	query FetchGames {
-		games{
+		games {
 			id
 			title
 		}

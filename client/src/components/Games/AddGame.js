@@ -1,13 +1,13 @@
 import React from 'react'
+import { useMutation } from '@apollo/client';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import { useMutation } from '@apollo/client';
-
 import * as Yup from 'yup';
-import  * as query from '../queries'
+
 import Error from '../ui/error'
+import * as query from '../queries'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -44,15 +44,15 @@ export default function AddGame() {
   })
   
   const handleSubmit = function (values, {resetForm}) {
-    const {title, rating, genre, publisher} = values
-    addGame({variables: {
-      title,
-      genre, 
-      rating, 
-      publisher
-    }
-  }
-  )
+    const {title, rating, genre, publisher} = values;
+    addGame({
+      variables: {
+        title,
+        genre, 
+        rating, 
+        publisher
+      }
+    })
   resetForm({values: ""})
 }
 

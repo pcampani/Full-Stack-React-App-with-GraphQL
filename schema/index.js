@@ -119,6 +119,7 @@ const mutation = new GraphQLObjectType({
         return game;
       }
     },
+
     removeGame: {
       type: GameType,
       args: {id: {type: GraphQLID}},
@@ -130,6 +131,7 @@ const mutation = new GraphQLObjectType({
         }
       }
     },
+    
     addPublisher: {
       type: PublisherType,
       args: {
